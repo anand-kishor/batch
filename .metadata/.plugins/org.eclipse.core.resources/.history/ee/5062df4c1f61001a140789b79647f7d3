@@ -1,0 +1,12 @@
+package com.batch.demo.job.writer;
+
+import com.batch.demo.model.Employee;
+
+public class Sender {
+
+	public void send(Employee employees) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

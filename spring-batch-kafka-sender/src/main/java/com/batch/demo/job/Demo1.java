@@ -1,0 +1,100 @@
+package com.batch.demo.job;
+
+import javax.sql.DataSource;
+
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepScope;
+import org.springframework.batch.item.ItemWriter;
+import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
+import org.springframework.batch.item.database.JdbcBatchItemWriter;
+import org.springframework.batch.item.file.FlatFileItemReader;
+import org.springframework.batch.item.file.mapping.DefaultLineMapper;
+import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+
+import com.batch.demo.job.writer.KafkaSenderWriter;
+import com.batch.demo.mapper.EmployeeFieldSetMapper;
+import com.batch.demo.model.Employee;
+import com.batch.demo.processor.EmployeeProcessor;
+
+@Configuration
+public class Demo1 {
+	@Autowired
+	private JobBuilderFactory jobBuilderFactory;
+	@Autowired
+	private StepBuilderFactory stepBuilderFactory;
+	@Autowired
+	private DataSource dataSource;
+	@Autowired
+	private EmployeeProcessor employeeProcessor;
+	
+	@Qualifier(value="job1")
+	@Bean
+	public Job jobName()
+	{
+		return this.jobBuilderFactory
+				.get("job1")
+				.start(step1())
+				.build();
+				
+	}
+
+	@Bean
+	public Step step1() {
+		// TODO Auto-generated method stub
+		return this.stepBuilderFactory.get("step1")
+				.<Employee,Employee>chunk(5)
+				.reader(employeeReader())
+				.processor(employeeProcessor)
+				//.writer(employeeDBWriterDefault())
+				.writer(kafkaSenderWriter())
+				.build();
+	}
+
+	@Bean
+	public KafkaSenderWriter kafkaSenderWriter() {
+		// TODO Auto-generated method stub
+		return new KafkaSenderWriter();
+	}
+
+	@Bean
+	public JdbcBatchItemWriter<Employee> employeeDBWriterDefault() {
+		// TODO Auto-generated method stub
+		JdbcBatchItemWriter<Employee> writer=new JdbcBatchItemWriter<Employee>();
+		writer.setDataSource(dataSource);
+		writer.setSql("insert into employee (id,name,email,address,age) values(:id,:name,:email,:address,:age)");
+		writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<Employee>());
+		return writer;
+	}
+
+	@Bean
+	public FlatFileItemReader<Employee>  employeeReader() {
+		// TODO Auto-generated method stubFlatFileItemReader<Employee>
+		FlatFileItemReader<Employee> reader=new FlatFileItemReader<Employee>();
+		reader.setResource(inputFileResource(null));
+		reader.setLineMapper(new DefaultLineMapper<Employee>() {{
+			setLineTokenizer(new DelimitedLineTokenizer() {{
+				setNames("id","name","email","address","age");
+			}});
+			setFieldSetMapper(new EmployeeFieldSetMapper());
+		}});
+		
+		return reader;
+	}
+	@Bean
+	@StepScope
+	Resource inputFileResource(@Value("#{jobParameters[fileName]}") final String fileName) 
+	{
+		return new ClassPathResource(fileName);
+	}
+
+}

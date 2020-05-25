@@ -1,0 +1,9 @@
+spring.datasource.username=root
+spring.datasource.password=root
+spring.datasource.url=jdbc:mysql://localhost:3307/project_batch
+#jpa
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+#spring batch
+spring.batch.job.enabled=false
+

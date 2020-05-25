@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=spring-batch-example-01/C:\/Users\/Anand-PC\/.m2\/repository\/org\/springframework\/batch\/spring-batch-infrastructure\/4.2.1.RELEASE\/spring-batch-infrastructure-4.2.1.RELEASE.jar&lt;org.springframework.batch.item(ItemProcessor.class[ItemProcessor" modifiers="1537" timestamp="1578337121952"/>
+<typeInfo handle="=spring-batch-example-01/C:\/Users\/Anand-PC\/.m2\/repository\/org\/springframework\/batch\/spring-batch-core\/4.2.1.RELEASE\/spring-batch-core-4.2.1.RELEASE.jar&lt;org.springframework.batch.core(ItemProcessListener.class[ItemProcessListener" modifiers="1537" timestamp="1578337120917"/>
+<typeInfo handle="=spring-batch-kafka-sender/C:\/Users\/Anand-PC\/.m2\/repository\/org\/springframework\/batch\/spring-batch-infrastructure\/4.2.1.RELEASE\/spring-batch-infrastructure-4.2.1.RELEASE.jar&lt;org.springframework.batch.item(ItemWriter.class[ItemWriter" modifiers="1537" timestamp="1578337121952"/>
+<typeInfo handle="=spring-batch-kafka-sender/C:\/Users\/Anand-PC\/.m2\/repository\/org\/springframework\/batch\/spring-batch-core\/4.2.1.RELEASE\/spring-batch-core-4.2.1.RELEASE.jar&lt;org.springframework.batch.core(ItemWriteListener.class[ItemWriteListener" modifiers="1537" timestamp="1578337120917"/>
+<typeInfo handle="=spring-batch-example-01/C:\/Users\/Anand-PC\/.m2\/repository\/org\/springframework\/batch\/spring-batch-core\/4.2.1.RELEASE\/spring-batch-core-4.2.1.RELEASE.jar&lt;org.springframework.batch.core(Job.class[Job" modifiers="1537" timestamp="1578337120917"/>
+</typeInfoHistroy>

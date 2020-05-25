@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="spring-batch-kafka-sender"/>
+<aop-project name="spring-batch-kafka-consumer"/>
+<aop-project name="spring-batch-example-01"/>
+<aop-project name="spring-batch-schedular"/>
+</aop-reference-model>

@@ -1,0 +1,18 @@
+/*
+ * package com.batch.demo.schedular;
+ * 
+ * import org.springframework.beans.factory.annotation.Autowired; import
+ * org.springframework.context.annotation.Configuration; import
+ * org.springframework.scheduling.annotation.Scheduled;
+ * 
+ * import com.batch.demo.runner.JobRunner;
+ * 
+ * @Configuration public class JobSchedular {
+ * 
+ * @Autowired private JobRunner jobRunner;
+ * 
+ * @Scheduled(cron="0 0/1 * 1/1 * ? ") public void jobSchedular() {
+ * System.out.println("job is schedular"); jobRunner.runBatchJob(); }
+ * 
+ * }
+ */

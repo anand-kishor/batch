@@ -1,0 +1,5 @@
+package com.batch.demo.schedular;
+
+public class JobSchedular {
+
+}

@@ -1,0 +1,20 @@
+package com.batch.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.batch.demo.runner.JobRunner;
+
+@RestController
+@RequestMapping("/run")
+public class JobController {
+	@Autowired
+	private JobRunner jobRunner;
+	@RequestMapping(value="/job")
+	public String runJobRunner()
+	{
+	jobRunner.runBatchJob();
+	return "job is success";
+	}
+}

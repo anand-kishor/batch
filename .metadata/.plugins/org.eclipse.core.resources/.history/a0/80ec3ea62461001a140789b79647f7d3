@@ -1,0 +1,7 @@
+package com.batch.consumer.service;
+@Configuration
+
+public class KafkaConsumerService {
+	
+
+}
